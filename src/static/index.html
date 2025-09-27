@@ -3,45 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sign up for extracurricular activities at Mergington High School" />
     <title>Mergington High School Activities</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
     </header>
 
-    <main>
-      <section id="activities-container">
-        <h3>Available Activities</h3>
-        <div id="activities-list">
+    <main id="main-content" role="main" tabindex="-1">
+      <section id="activities-container" aria-labelledby="activities-title">
+        <h3 id="activities-title">Available Activities</h3>
+        <div id="activities-list" role="region" aria-live="polite">
           <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+          <p>Loading activities... Please wait</p>
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
+      <section id="signup-container" aria-labelledby="signup-title">
+        <h3 id="signup-title">Sign Up for an Activity</h3>
+        <form id="signup-form" novalidate>
           <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+            <label for="email" id="email-label">Student Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              required 
+              aria-required="true"
+              aria-describedby="email-hint email-error"
+              placeholder="your-email@mergington.edu"
+              autocomplete="email" />
+            <span id="email-hint" class="hint">Use your school email address</span>
+            <span id="email-error" class="error" role="alert" aria-hidden="true"></span>
           </div>
           <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
+            <label for="activity" id="activity-label">Select Activity:</label>
+            <select 
+              id="activity" 
+              name="activity"
+              required 
+              aria-required="true"
+              aria-describedby="activity-error">
               <option value="">-- Select an activity --</option>
               <!-- Activity options will be loaded here -->
             </select>
+            <span id="activity-error" class="error" role="alert" aria-hidden="true"></span>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" aria-label="Submit activity sign up form">Sign Up</button>
         </form>
-        <div id="message" class="hidden"></div>
+        <div id="message" class="hidden" role="status" aria-live="polite"></div>
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <p>&copy; 2023 Mergington High School</p>
     </footer>
 
